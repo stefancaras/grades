@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: sans-serif;
+}
+button {
+    background-color: rgb(68, 68, 68);
+    color: white;
+    border: none;
+}
+#tableNames {
+    width: 100%;
+    margin-top: 20px;
+}
+#tableGrades {
+    width: fit-content;
+    margin: 20px auto 0 auto;
+}
+td {
+    border: 1px solid;
+}
+td:nth-child(1) {
+	width: 55%;
+}
+td:nth-child(2),
+td:nth-child(3),
+td:nth-child(4) {
+	width: 15%;
+}
+.input {
+    width: 69%;
+    height: 2rem;
+    padding-left: 10px;
+}
+.button {
+    width: 30%;
+    height: 2rem;
+    
+    margin: 20px auto 0 auto;
+}
+#container {
+    width: 500px;
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 20px;
+    margin: auto;
+}
+#lista_elevi_wrapper,
+#note_elev_wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}

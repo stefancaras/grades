@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grades</title>
+    <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+    crossorigin="anonymous"
+  />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="lista_elevi_wrapper">
+            <h1>Listă elevi</h1>
+            <div>
+                <input class="input" id="name" type="text" placeholder="Nume elev">
+                <button class="button" id="addStudent">Adaugă</button>
+            </div>
+            <div>
+                <button class="button" id="sortUp">Sortare <i class="fas fa-arrow-up"></i></button>
+                <button class="button" id="sortDown">Sortare <i class="fas fa-arrow-down"></i></button>
+            </div>
+            <table id="tableNames">
+                <tr>
+                    <td><b>Nume și prenume</b></td>
+                    <td><b>Medie</b></td>
+                    <td><b>Note</b></td>
+                    <td><b>Șterge</b></td>
+                </tr>
+            </table>
+        </div>
+        <div id="note_elev_wrapper">
+            <button class="button" id="hideGrades">Ascunde notele</button>
+            <div>
+                <input class="input" id="grade" type="number" placeholder="Nota">
+                <button class="button" id="addGrade">Adaugă</button>
+            </div>
+            <div>
+                <button class="button" id="sortGradesUp">Sortare <i class="fas fa-arrow-up"></i></button>
+                <button class="button" id="sortGradesDown">Sortare <i class="fas fa-arrow-down"></i></button>
+            </div>
+            <table id="tableGrades">
+                <tr>
+                    <td>Note</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
