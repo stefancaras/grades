@@ -17,39 +17,28 @@
     <div id="container">
         <div id="lista_elevi_wrapper">
             <h1>Listă elevi</h1>
-            <div>
-                <input class="input" id="name" type="text" placeholder="Nume elev">
-                <button class="button" id="addStudent">Adaugă</button>
-            </div>
+            <form onsubmit="return false">
+                <input class="input" id="inputName" type="text" pattern="[a-zA-Z -]{3,}" placeholder="Nume și prenume elev">
+                <button class="button" id="addStudent" type="submit">Adaugă</button>
+            </form>
             <div>
                 <button class="button" id="sortUp">Sortare <i class="fas fa-arrow-up"></i></button>
                 <button class="button" id="sortDown">Sortare <i class="fas fa-arrow-down"></i></button>
             </div>
-            <table id="tableNames">
-                <tr>
-                    <td><b>Nume și prenume</b></td>
-                    <td><b>Medie</b></td>
-                    <td><b>Note</b></td>
-                    <td><b>Șterge</b></td>
-                </tr>
-            </table>
+            <div id="tableDiv"></div>
         </div>
         <div id="note_elev_wrapper">
             <button class="button" id="hideGrades">Ascunde notele</button>
-            <div>
-                <input class="input" id="grade" type="number" placeholder="Nota">
-                <button class="button" id="addGrade">Adaugă</button>
-            </div>
+            <p id="showName"></p>
+            <form onsubmit="return false">
+                <input class="input" id="inputGrade" type="number" min="0" max="10" placeholder="Nota">
+                <button class="button" id="addGrade" type="submit">Adaugă</button>
+            </form>
             <div>
                 <button class="button" id="sortGradesUp">Sortare <i class="fas fa-arrow-up"></i></button>
                 <button class="button" id="sortGradesDown">Sortare <i class="fas fa-arrow-down"></i></button>
             </div>
-            <table id="tableGrades">
-                <tr>
-                    <td>Note</td>
-                    <td></td>
-                </tr>
-            </table>
+            <div id="tableGradesDiv"></div>
         </div>
     </div>
     <script src="script.js"></script>
