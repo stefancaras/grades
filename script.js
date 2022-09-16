@@ -121,11 +121,14 @@ container.addEventListener('click', function(event) {
         UI.createTableGrades();
         UI.createTableNames();
     } else if (clickedElement.classList.contains("xNames")) {
-        index = Number(clickedElement.id);
-		array.splice(index,1);
+        const indexNames = Number(clickedElement.id);
+		array.splice(indexNames,1);
         UI.createTableNames();
+        if (index === indexNames) {
+            note_elev_wrapper.remove();
+        }
     } else if (clickedElement.classList.contains("xGrades")) {
-        let indexGrades = Number(clickedElement.id);
+        const indexGrades = Number(clickedElement.id);
 		array[index].grades.splice(indexGrades,1);
         UI.createTableGrades();
         UI.createTableNames();
