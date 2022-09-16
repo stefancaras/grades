@@ -8,16 +8,15 @@ const showName = document.querySelector('#showName');
 const tableDiv = document.querySelector('#tableDiv');
 const tableGradesDiv = document.querySelector('#tableGradesDiv');
 
-let array = [{name: 'popescu ion', grades: [5, 7, 4, 10, 8], avg: 0},
-    {name: 'blandiana ana', grades: [5, 9, 7, 10, 8], avg: 0}];
+let array = [{name: 'popescu ion', grades: [5, 7, 4, 10, 8]},
+    {name: 'blandiana ana', grades: [5, 9, 7, 10, 8]}];
 let index;
 note_elev_wrapper.remove();
 
 class Student {
-    constructor (name, grades, avg) {
+    constructor (name, grades) {
         this.name = name;
         this.grades = grades;
-        this.avg = avg;
     }
 }
 
@@ -73,7 +72,7 @@ class UI {
             sum += el;
             count++;
         });
-        return array[i].avg = (sum/count).toFixed(2);
+        return (sum/count).toFixed(2);
     }
     static sortArrayUp() {
         array.sort((a,b) => (a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0));
@@ -104,7 +103,6 @@ container.addEventListener('click', function(event) {
         const student = new Student;
         student.name = inputName.value.toLowerCase();
         student.grades = [];
-        student.avg = 0;
         array.push(student);
         inputName.value = "";
         UI.createTableNames();
