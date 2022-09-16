@@ -1,15 +1,16 @@
 const container = document.querySelector('#container');
-const inputName = document.querySelector('#inputName');
-const addStudent = document.querySelector('#addStudent');
 const note_elev_wrapper = document.querySelector('#note_elev_wrapper');
-const showName = document.querySelector('#showName');
+const inputName = document.querySelector('#inputName');
 const inputGrade = document.querySelector('#inputGrade');
+const addStudent = document.querySelector('#addStudent');
 const addGrade = document.querySelector('#addGrade');
+const showName = document.querySelector('#showName');
 const tableDiv = document.querySelector('#tableDiv');
 const tableGradesDiv = document.querySelector('#tableGradesDiv');
 
-let array = [];
-let avg = 0;
+let array = [{name: 'popescu ion', grades: [5, 7, 4, 10, 8], avg: 0},
+    {name: 'blandiana ana', grades: [5, 9, 7, 10, 8], avg: 0}];
+let index;
 note_elev_wrapper.remove();
 
 class Student {
@@ -21,7 +22,7 @@ class Student {
 }
 
 class UI {
-    static createTable() {
+    static createTableNames() {
         tableDiv.innerHTML = `
         <table id="tableNames">
             <tr>
@@ -32,6 +33,7 @@ class UI {
             </tr>
         </table>`
         const tableNames = document.querySelector('#tableNames');
+        let i = 0;
         array.forEach(el => {
             let row = tableNames.insertRow(1);
             let cell1 = row.insertCell(0);
@@ -39,9 +41,10 @@ class UI {
             let cell3 = row.insertCell(2);
             let cell4 = row.insertCell(3);
             cell1.textContent = el.name;
-            cell2.textContent = avg;
-            cell3.innerHTML = `<button id="view">Vezi note</button>`;
-            cell4.innerHTML = `<i class="fas fa-window-close" id="x"></i>`;
+            cell2.textContent = UI.calculateAvg(i);
+            cell3.innerHTML = `<button class="view" id="${i}">Vezi note</button>`;
+            cell4.innerHTML = `<i class="fas fa-window-close xNames" id="${i}"></i>`;
+            i++;
         });
     }
     static createTableGrades() { 
@@ -53,20 +56,24 @@ class UI {
             </tr>
         </table>`
         const tableGrades = document.querySelector('#tableGrades');
-        const obj = array.find(x => x.name === showName.textContent);
-        const index = array.indexOf(obj);
-        let sum = 0;
-        let count = 0;
+        let i = 0;
         array[index].grades.forEach(el => {
             let row = tableGrades.insertRow(1);
             let cell1 = row.insertCell(0);
             let cell2 = row.insertCell(1);
             cell1.textContent = el;
-            cell2.innerHTML = `<i class="fas fa-window-close" id="x"></i>`;
+            cell2.innerHTML = `<i class="fas fa-window-close xGrades" id="${i}"></i>`;
+            i++;
+        });
+    }
+    static calculateAvg(i) {
+        let sum = 0;
+        let count = 0;
+        array[i].grades.forEach(el => {
             sum += el;
             count++;
         });
-        avg = sum/count;
+        return array[i].avg = (sum/count).toFixed(2);
     }
     static sortArrayUp() {
         array.sort((a,b) => (a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0));
@@ -74,15 +81,11 @@ class UI {
     static sortArrayDown() {
         array.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
     }
-    static sortGradesUp() {
-        const obj = array.find(x => x.name === showName.textContent);
-        const index = array.indexOf(obj); 
-        array[index].grades.sort((a,b) => a-b);
+    static sortGradesUp() { 
+        array[index].grades.sort((a,b) => b-a);
     }
     static sortGradesDown() {
-        const obj = array.find(x => x.name === showName.textContent);
-        const index = array.indexOf(obj); 
-        array[index].grades.sort((a,b) => b-a);
+        array[index].grades.sort((a,b) => a-b);
     }
 }
 
@@ -96,46 +99,51 @@ container.addEventListener('keypress', function(event) {
 
 container.addEventListener('click', function(event) {
     const clickedElement = event.target;
-    const td1 = clickedElement.parentNode.parentNode.firstChild;
     if (clickedElement.id === 'addStudent' &&
      inputName.value != "" && inputName.checkValidity()) {
         const student = new Student;
         student.name = inputName.value.toLowerCase();
         student.grades = [];
+        student.avg = 0;
         array.push(student);
         inputName.value = "";
-        UI.createTable();
+        UI.createTableNames();
     } else if (clickedElement.id === 'addGrade' && 
     inputGrade.value != "" && inputGrade.checkValidity()) {
-        const obj = array.find(x => x.name === showName.textContent);
-        const index = array.indexOf(obj);
         array[index].grades.push(Number(inputGrade.value));
         UI.createTableGrades();
-        UI.createTable();
+        UI.createTableNames();
         inputGrade.value = "";
-    } else if (clickedElement.id === 'x') {
-		clickedElement.parentNode.parentNode.remove();
+    } else if (clickedElement.classList.contains("view")) {
+        index = Number(clickedElement.id);
+        showName.textContent = array[index].name;
+        container.append(note_elev_wrapper);
+        UI.createTableGrades();
+        UI.createTableNames();
+    } else if (clickedElement.classList.contains("xNames")) {
+        index = Number(clickedElement.id);
+		array.splice(index,1);
+        UI.createTableNames();
+    } else if (clickedElement.classList.contains("xGrades")) {
+        let indexGrades = Number(clickedElement.id);
+		array[index].grades.splice(indexGrades,1);
+        UI.createTableGrades();
+        UI.createTableNames();
     } else if (clickedElement.id === "hideGrades") {
         note_elev_wrapper.remove();
-    } else if (clickedElement.id === "view") {
-        const view = document.querySelector('#view');
-        container.append(note_elev_wrapper);
-        showName.textContent = view.parentNode.parentNode.firstChild.textContent;
-    } else if (clickedElement.id === "sortUp") {
+    }  else if (clickedElement.id === "sortUp") {
         UI.sortArrayUp();
-        tableNames.remove();
-        UI.createTable();
+        UI.createTableNames();
     } else if (clickedElement.id === "sortDown") {
         UI.sortArrayDown();
-        tableNames.remove();
-        UI.createTable();
+        UI.createTableNames();
     } else if (clickedElement.id === "sortGradesUp") {
         UI.sortGradesUp();
-        tableGrades.remove();
         UI.createTableGrades();
     } else if (clickedElement.id === "sortGradesDown") {
         UI.sortGradesDown();
-        tableGrades.remove();
         UI.createTableGrades();
     } 
 });
+
+UI.createTableNames();
