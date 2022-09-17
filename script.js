@@ -23,14 +23,14 @@ class Student {
 class UI {
     static createTableNames() {
         tableDiv.innerHTML = `
-        <table id="tableNames">
-            <tr>
-                <td><b>Nume și prenume</b></td>
-                <td><b>Medie</b></td>
-                <td><b>Note</b></td>
-                <td></td>
-            </tr>
-        </table>`
+            <table id="tableNames">
+                <tr>
+                    <td><b>Nume și prenume</b></td>
+                    <td><b>Medie</b></td>
+                    <td><b>Note</b></td>
+                    <td></td>
+                </tr>
+            </table>`;
         const tableNames = document.querySelector('#tableNames');
         let i = 0;
         array.forEach(el => {
@@ -48,12 +48,12 @@ class UI {
     }
     static createTableGrades() { 
         tableGradesDiv.innerHTML = `
-        <table id="tableGrades">
-            <tr>
-                <td><b>Note</b></td>
-                <td></td>
-            </tr>
-        </table>`
+            <table id="tableGrades">
+                <tr>
+                    <td><b>Note</b></td>
+                    <td></td>
+                </tr>
+            </table>`;
         const tableGrades = document.querySelector('#tableGrades');
         let i = 0;
         array[index].grades.forEach(el => {
@@ -88,7 +88,7 @@ class UI {
     }
 }
 
-container.addEventListener('keypress', function(event) {
+container.addEventListener('keypress', (event) => {
     if (event.target.id === 'inputName' && event.key === 'Enter') {
         addStudent.click();
     } else if (event.target.id === 'inputGrade' && event.key === 'Enter') {
@@ -96,10 +96,10 @@ container.addEventListener('keypress', function(event) {
     }
 });
 
-container.addEventListener('click', function(event) {
+container.addEventListener('click', (event) => {
     const clickedElement = event.target;
     if (clickedElement.id === 'addStudent' &&
-     inputName.value != "" && inputName.checkValidity()) {
+    inputName.value != "" && inputName.checkValidity()) {
         const student = new Student;
         student.name = inputName.value.toLowerCase();
         student.grades = [];
@@ -109,22 +109,21 @@ container.addEventListener('click', function(event) {
     } else if (clickedElement.id === 'addGrade' && 
     inputGrade.value != "" && inputGrade.checkValidity()) {
         array[index].grades.push(Number(inputGrade.value));
+        inputGrade.value = "";
         UI.createTableGrades();
         UI.createTableNames();
-        inputGrade.value = "";
     } else if (clickedElement.classList.contains("view")) {
         index = Number(clickedElement.id)-1000;
         showName.textContent = array[index].name;
         container.append(note_elev_wrapper);
         UI.createTableGrades();
-        UI.createTableNames();
     } else if (clickedElement.classList.contains("xNames")) {
         const indexNames = Number(clickedElement.id)-2000;
 		array.splice(indexNames,1);
-        UI.createTableNames();
         if (index === indexNames) {
             note_elev_wrapper.remove();
         }
+        UI.createTableNames();
     } else if (clickedElement.classList.contains("xGrades")) {
         const indexGrades = Number(clickedElement.id);
 		array[index].grades.splice(indexGrades,1);
@@ -132,7 +131,7 @@ container.addEventListener('click', function(event) {
         UI.createTableNames();
     } else if (clickedElement.id === "hideGrades") {
         note_elev_wrapper.remove();
-    }  else if (clickedElement.id === "sortUp") {
+    } else if (clickedElement.id === "sortUp") {
         UI.sortArrayUp();
         UI.createTableNames();
     } else if (clickedElement.id === "sortDown") {
