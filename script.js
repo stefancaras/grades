@@ -41,8 +41,8 @@ class UI {
             let cell4 = row.insertCell(3);
             cell1.textContent = el.name;
             cell2.textContent = UI.calculateAvg(i);
-            cell3.innerHTML = `<button class="view" id="${i}">Vezi note</button>`;
-            cell4.innerHTML = `<i class="fas fa-window-close xNames" id="${i}"></i>`;
+            cell3.innerHTML = `<button class="view" id="${i+1000}">Vezi note</button>`;
+            cell4.innerHTML = `<i class="fas fa-window-close xNames" id="${i+2000}"></i>`;
             i++;
         });
     }
@@ -113,13 +113,13 @@ container.addEventListener('click', function(event) {
         UI.createTableNames();
         inputGrade.value = "";
     } else if (clickedElement.classList.contains("view")) {
-        index = Number(clickedElement.id);
+        index = Number(clickedElement.id)-1000;
         showName.textContent = array[index].name;
         container.append(note_elev_wrapper);
         UI.createTableGrades();
         UI.createTableNames();
     } else if (clickedElement.classList.contains("xNames")) {
-        const indexNames = Number(clickedElement.id);
+        const indexNames = Number(clickedElement.id)-2000;
 		array.splice(indexNames,1);
         UI.createTableNames();
         if (index === indexNames) {
@@ -146,5 +146,4 @@ container.addEventListener('click', function(event) {
         UI.createTableGrades();
     } 
 });
-
 UI.createTableNames();
