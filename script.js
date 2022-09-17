@@ -120,9 +120,7 @@ container.addEventListener('click', (event) => {
     } else if (clickedElement.classList.contains("xNames")) {
         const indexNames = Number(clickedElement.id)-2000;
 		array.splice(indexNames,1);
-        if (index === indexNames) {
-            note_elev_wrapper.remove();
-        }
+        note_elev_wrapper.remove();
         UI.createTableNames();
     } else if (clickedElement.classList.contains("xGrades")) {
         const indexGrades = Number(clickedElement.id);
