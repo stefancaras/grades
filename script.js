@@ -130,9 +130,11 @@ container.addEventListener('click', (event) => {
     } else if (clickedElement.id === "hideGrades") {
         note_elev_wrapper.remove();
     } else if (clickedElement.id === "sortUp") {
+        note_elev_wrapper.remove();
         UI.sortArrayUp();
         UI.createTableNames();
     } else if (clickedElement.id === "sortDown") {
+        note_elev_wrapper.remove();
         UI.sortArrayDown();
         UI.createTableNames();
     } else if (clickedElement.id === "sortGradesUp") {
