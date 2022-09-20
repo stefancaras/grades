@@ -11,12 +11,12 @@ const tableGradesDiv = document.querySelector('#tableGradesDiv');
 let array = [{name: 'popescu ion', grades: [5, 7, 4, 10, 8]},
     {name: 'blandiana ana', grades: [5, 9, 7, 10, 8]}];
 let index;
-note_elev_wrapper.remove();
+note_elev_wrapper.style.display = "none";
 
 class Student {
-    constructor (name, grades) {
+    constructor (name) {
         this.name = name;
-        this.grades = grades;
+        this.grades = [];
     }
 }
 
@@ -100,9 +100,7 @@ container.addEventListener('click', (event) => {
     const clickedElement = event.target;
     if (clickedElement.id === 'addStudent' &&
     inputName.value != "" && inputName.checkValidity()) {
-        const student = new Student;
-        student.name = inputName.value.toLowerCase();
-        student.grades = [];
+        const student = new Student(inputName.value.toLowerCase());
         array.push(student);
         inputName.value = "";
         UI.createTableNames();
@@ -115,32 +113,32 @@ container.addEventListener('click', (event) => {
     } else if (clickedElement.classList.contains("view")) {
         index = Number(clickedElement.id)-1000;
         showName.textContent = array[index].name;
-        container.append(note_elev_wrapper);
+        note_elev_wrapper.style.display = "block";
         UI.createTableGrades();
     } else if (clickedElement.classList.contains("xNames")) {
         const indexNames = Number(clickedElement.id)-2000;
 		array.splice(indexNames,1);
-        note_elev_wrapper.remove();
+        note_elev_wrapper.style.display = "none";
         UI.createTableNames();
     } else if (clickedElement.classList.contains("xGrades")) {
         const indexGrades = Number(clickedElement.id);
-		array[index].grades.splice(indexGrades,1);
+		array[index].grades.splice(indexGrades, 1);
         UI.createTableGrades();
         UI.createTableNames();
     } else if (clickedElement.id === "hideGrades") {
-        note_elev_wrapper.remove();
-    } else if (clickedElement.id === "sortUp") {
-        note_elev_wrapper.remove();
+        note_elev_wrapper.style.display = "none";
+    } else if (clickedElement.classList.contains("sortUp")) {
+        note_elev_wrapper.style.display = "none";
         UI.sortArrayUp();
         UI.createTableNames();
-    } else if (clickedElement.id === "sortDown") {
-        note_elev_wrapper.remove();
+    } else if (clickedElement.classList.contains("sortDown")) {
+        note_elev_wrapper.style.display = "none";
         UI.sortArrayDown();
         UI.createTableNames();
-    } else if (clickedElement.id === "sortGradesUp") {
+    } else if (clickedElement.classList.contains("sortGradesUp")) {
         UI.sortGradesUp();
         UI.createTableGrades();
-    } else if (clickedElement.id === "sortGradesDown") {
+    } else if (clickedElement.classList.contains("sortGradesDown")) {
         UI.sortGradesDown();
         UI.createTableGrades();
     } 
