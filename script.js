@@ -75,10 +75,10 @@ class UI {
         return (sum/count).toFixed(2);
     }
     static sortArrayUp() {
-        array.sort((a,b) => (a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0));
+        array.sort((a,b) => a.name < b.name ? 1 : -1);
     }
     static sortArrayDown() {
-        array.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+        array.sort((a,b) => a.name > b.name ? 1 : -1);
     }
     static sortGradesUp() { 
         array[index].grades.sort((a,b) => b-a);
