@@ -41,8 +41,8 @@ class UI {
             let cell4 = row.insertCell(3);
             cell1.textContent = el.name;
             cell2.textContent = UI.calculateAvg(i);
-            cell3.innerHTML = `<button class="view" id="${i+1000}">Vezi note</button>`;
-            cell4.innerHTML = `<i class="fas fa-window-close xNames" id="${i+2000}"></i>`;
+            cell3.innerHTML = `<button class="view" data-id="${i}">Vezi note</button>`;
+            cell4.innerHTML = `<i class="fas fa-window-close xNames" data-id="${i}"></i>`;
             i++;
         });
     }
@@ -61,7 +61,7 @@ class UI {
             let cell1 = row.insertCell(0);
             let cell2 = row.insertCell(1);
             cell1.textContent = el;
-            cell2.innerHTML = `<i class="fas fa-window-close xGrades" id="${i}"></i>`;
+            cell2.innerHTML = `<i class="fas fa-window-close xGrades" data-id="${i}"></i>`;
             i++;
         });
     }
@@ -111,17 +111,17 @@ container.addEventListener('click', (event) => {
         UI.createTableGrades();
         UI.createTableNames();
     } else if (clickedElement.classList.contains("view")) {
-        index = Number(clickedElement.id)-1000;
+        index = Number(clickedElement.dataset.id);
         showName.textContent = array[index].name;
         note_elev_wrapper.style.display = "block";
         UI.createTableGrades();
     } else if (clickedElement.classList.contains("xNames")) {
-        const indexNames = Number(clickedElement.id)-2000;
+        const indexNames = Number(clickedElement.dataset.id);
 		array.splice(indexNames,1);
         note_elev_wrapper.style.display = "none";
         UI.createTableNames();
     } else if (clickedElement.classList.contains("xGrades")) {
-        const indexGrades = Number(clickedElement.id);
+        const indexGrades = Number(clickedElement.dataset.id);
 		array[index].grades.splice(indexGrades, 1);
         UI.createTableGrades();
         UI.createTableNames();
