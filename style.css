@@ -1,68 +1,125 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 body {
-    font-family: sans-serif;
-}
-button {
-    background-color: rgb(68, 68, 68);
-    color: white;
-    border: none;
-}
-button:active {
-    background-color: rgb(34, 34, 34);
+  font-family: sans-serif;
 }
 p {
-    margin: 20px 0 0 0;
-    font-size: 1.5rem;
-    text-transform: capitalize;
+  margin: 20px 0 0 0;
+  font-size: 1.5rem;
+  text-transform: capitalize;
 }
-td {
-    border: 1px solid;
-    text-transform: capitalize;
-}
-td button {
-    height: 2.2rem;
-}
-td:nth-child(1) {
-	width: 60%;
-}
-td:nth-child(2),
-td:nth-child(3) {
-	width: 15%;
-}
-td:nth-child(4) {
-    font-size: 2rem;
-	border: none;
-}
+
 .input {
-    width: 69%;
-    height: 2rem;
-    padding-left: 10px;
+  width: 69%;
+  height: 2rem;
+  padding-left: 10px;
 }
-.button {
-    width: 30%;
-    height: 2rem;
-    margin: 20px auto 0 auto;
+.ml {
+    margin-left: 0.4rem;
 }
+.mr {
+    margin-right: 0.4rem;
+}
+
+/* Table */
+
+.table {
+  width: 80vw;
+  text-align: center;
+  border-collapse: collapse;
+  margin: 40px 0;
+  font-size: 0.9em;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+.table th {
+  background-color: #3498db;
+}
+.table th,
+.table td {
+  padding: 12px 15px;
+}
+.table td {
+    text-transform: capitalize;
+}
+.table tr {
+  border-bottom: thin solid #dddddd;
+}
+.table tr:nth-of-type(odd) {
+  background-color: #375a7f;
+}
+
+/* Buttons  */
+.btn,
+.greenBtn,
+.redBtn,
+.yellowBtn {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn {
+  background-color: #444444;
+}
+.btn:hover {
+  background-color: #3a3a3a;
+}
+.btn:active {
+  background-color: #181818;
+}
+.greenBtn {
+  background-color: #00bc8c;
+}
+.greenBtn:hover {
+  background-color: #009b74;
+}
+.greenBtn:active {
+  background-color: #005e46;
+}
+.redBtn {
+  background-color: #e74c3c;
+}
+.redBtn:hover {
+  background-color: #ac392c;
+}
+.redBtn:active {
+  background-color: #7c2b22;
+}
+.yellowBtn {
+  background-color: #f39c12;
+}
+.yellowBtn:hover {
+  background-color: #b8770e;
+}
+.yellowBtn:active {
+  background-color: #8f5c0b;
+}
+
+/* IDs */
+
 #container {
-    width: 500px;
-    background-color: lightgray;
-    border-radius: 10px;
-    padding: 20px;
-    margin: auto;
+  width: 800px;
+  background-color: #222222;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: auto;
 }
-#lista_elevi_wrapper,
-#note_elev_wrapper {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+#studentsContainer,
+#gradesContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 #tableNames {
-    width: 100%;
-    margin-top: 20px;
+  width: 100%;
+  margin-top: 20px;
 }
 #tableGrades {
-    width: fit-content;
-    margin: 20px auto 0 auto;
+  width: fit-content;
+  margin: 20px auto 0 auto;
 }

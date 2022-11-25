@@ -1,46 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grades</title>
     <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-    crossorigin="anonymous"
-  />
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div id="container">
-        <div id="lista_elevi_wrapper">
-            <h1>Listă elevi</h1>
-            <form onsubmit="return false">
-                <input class="input" id="inputName" type="text" pattern="[a-zA-Z -]{3,}" placeholder="Nume și prenume elev">
-                <button class="button" id="addStudent" type="submit">Adaugă</button>
-            </form>
-            <div>
-                <button class="button sortUp">Sortare <i class="fas fa-arrow-up sortUp"></i></button>
-                <button class="button sortDown">Sortare <i class="fas fa-arrow-down sortDown"></i></button>
-            </div>
-            <div id="tableDiv"></div>
+      <div id="studentsContainer">
+        <h1>Catalog</h1>
+        <form onsubmit="return false">
+          <input
+            class="input"
+            id="inputName"
+            type="text"
+            pattern="[a-zA-Z -]{3,}"
+            placeholder="Nume și prenume elev"
+          />
+          <button class="greenBtn" id="addStudent" type="submit">
+            <i class="fa-solid fa-plus mr"></i>Adaugă
+          </button>
+        </form>
+        <div>
+          <button class="yellowBtn sortUp">
+            Sortare<i class="fas fa-arrow-up sortUp ml"></i>
+          </button>
+          <button class="yellowBtn sortDown">
+            Sortare<i class="fas fa-arrow-down sortDown ml"></i>
+          </button>
         </div>
-        <div id="note_elev_wrapper">
-            <button class="button" id="hideGrades">Ascunde notele</button>
-            <p id="showName"></p>
-            <form onsubmit="return false">
-                <input class="input" id="inputGrade" type="number" min="0" max="10" placeholder="Nota">
-                <button class="button" id="addGrade" type="submit">Adaugă</button>
-            </form>
-            <div>
-                <button class="button sortGradesUp">Sortare <i class="fas fa-arrow-up sortGradesUp"></i></button>
-                <button class="button sortGradesDown">Sortare <i class="fas fa-arrow-down sortGradesDown"></i></button>
-            </div>
-            <div id="tableGradesDiv"></div>
+        <div id="tableDiv"></div>
+      </div>
+      <div id="gradesContainer">
+        <button class="yellowBtn hideGrades">
+          <i class="fa-solid fa-eye-slash hideGrades mr"></i>Ascunde notele
+        </button>
+        <p id="studentName"></p>
+        <form onsubmit="return false">
+          <input
+            class="input"
+            id="inputGrade"
+            type="number"
+            min="0"
+            max="10"
+            placeholder="Nota"
+          />
+          <button class="greenBtn" id="addGrade" type="submit">
+            <i class="fa-solid fa-plus mr"></i>Adaugă
+          </button>
+        </form>
+        <div>
+          <button class="yellowBtn sortGradesUp">
+            Sortare<i class="fas fa-arrow-up sortGradesUp ml"></i>
+          </button>
+          <button class="yellowBtn sortGradesDown">
+            Sortare<i class="fas fa-arrow-down sortGradesDown ml"></i>
+          </button>
         </div>
+        <div id="tableGradesDiv"></div>
+      </div>
     </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
