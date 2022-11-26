@@ -1,12 +1,12 @@
-const container = document.querySelector("#container");
-const gradesContainer = document.querySelector("#gradesContainer");
+const container = document.querySelector(".container");
+const gradesContainer = document.querySelector(".gradesContainer");
 const inputName = document.querySelector("#inputName");
 const inputGrade = document.querySelector("#inputGrade");
 const addStudent = document.querySelector("#addStudent");
 const addGrade = document.querySelector("#addGrade");
-const studentName = document.querySelector("#studentName");
-const tableDiv = document.querySelector("#tableDiv");
-const tableGradesDiv = document.querySelector("#tableGradesDiv");
+const studentName = document.querySelector(".studentName");
+const gradesTable = document.querySelector("#gradesTable");
+const studentsTable = document.querySelector("#studentsTable");
 
 let array = [
   { name: "popescu ion", grades: [5, 7, 4, 10, 8] },
@@ -23,20 +23,11 @@ class Student {
 }
 
 class UI {
-  static createTableNames() {
-    tableDiv.innerHTML = `
-            <table id="tableNames" class="table">
-                <tr>
-                    <th>Nume și prenume</th>
-                    <th>Medie</th>
-                    <th>Note</th>
-                    <th>Șterge</th>
-                </tr>
-            </table>`;
-    const tableNames = document.querySelector("#tableNames");
+  static createStudentsTable() {
+    studentsTable.innerHTML = "";
     let i = 0;
     array.forEach((el) => {
-      let row = tableNames.insertRow(1);
+      let row = studentsTable.insertRow(0);
       let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(1);
       let cell3 = row.insertCell(2);
@@ -54,18 +45,11 @@ class UI {
       i++;
     });
   }
-  static createTableGrades() {
-    tableGradesDiv.innerHTML = `
-            <table id="tableGrades" class="table">
-                <tr>
-                    <th>Note</th>
-                    <th>Șterge</th>
-                </tr>
-            </table>`;
-    const tableGrades = document.querySelector("#tableGrades");
+  static createGradesTable() {
+    gradesTable.innerHTML = "";
     let i = 0;
     array[index].grades.forEach((el) => {
-      let row = tableGrades.insertRow(1);
+      let row = gradesTable.insertRow(0);
       let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(1);
       cell1.textContent = el;
@@ -119,7 +103,7 @@ container.addEventListener("click", (event) => {
     const student = new Student(inputName.value.toLowerCase());
     array.push(student);
     inputName.value = "";
-    UI.createTableNames();
+    UI.createStudentsTable();
   } else if (
     clickedElement.id === "addGrade" &&
     inputGrade.value != "" &&
@@ -127,39 +111,39 @@ container.addEventListener("click", (event) => {
   ) {
     array[index].grades.push(Number(inputGrade.value));
     inputGrade.value = "";
-    UI.createTableGrades();
-    UI.createTableNames();
+    UI.createGradesTable();
+    UI.createStudentsTable();
   } else if (clickedElement.classList.contains("view")) {
     index = Number(clickedElement.dataset.id);
     studentName.textContent = array[index].name;
-    gradesContainer.style.display = "block";
-    UI.createTableGrades();
+    gradesContainer.style.display = "flex";
+    UI.createGradesTable();
   } else if (clickedElement.classList.contains("xNames")) {
     const indexNames = Number(clickedElement.dataset.id);
     array.splice(indexNames, 1);
     gradesContainer.style.display = "none";
-    UI.createTableNames();
+    UI.createStudentsTable();
   } else if (clickedElement.classList.contains("xGrades")) {
     const indexGrades = Number(clickedElement.dataset.id);
     array[index].grades.splice(indexGrades, 1);
-    UI.createTableGrades();
-    UI.createTableNames();
+    UI.createGradesTable();
+    UI.createStudentsTable();
   } else if (clickedElement.classList.contains("hideGrades")) {
     gradesContainer.style.display = "none";
   } else if (clickedElement.classList.contains("sortUp")) {
     gradesContainer.style.display = "none";
     UI.sortArrayUp();
-    UI.createTableNames();
+    UI.createStudentsTable();
   } else if (clickedElement.classList.contains("sortDown")) {
     gradesContainer.style.display = "none";
     UI.sortArrayDown();
-    UI.createTableNames();
+    UI.createStudentsTable();
   } else if (clickedElement.classList.contains("sortGradesUp")) {
     UI.sortGradesUp();
-    UI.createTableGrades();
+    UI.createGradesTable();
   } else if (clickedElement.classList.contains("sortGradesDown")) {
     UI.sortGradesDown();
-    UI.createTableGrades();
+    UI.createGradesTable();
   }
 });
-UI.createTableNames();
+UI.createStudentsTable();

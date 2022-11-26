@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="container">
+    <div class="container text-center">
       <div id="studentsContainer">
         <h1>Catalog</h1>
         <form onsubmit="return false">
@@ -27,7 +27,7 @@
             <i class="fa-solid fa-plus mr"></i>Adaugă
           </button>
         </form>
-        <div>
+        <div class="my-20">
           <button class="yellowBtn sortUp">
             Sortare<i class="fas fa-arrow-up sortUp ml"></i>
           </button>
@@ -35,35 +35,57 @@
             Sortare<i class="fas fa-arrow-down sortDown ml"></i>
           </button>
         </div>
-        <div id="tableDiv"></div>
+        <table class="table w-90">
+          <thead>
+            <tr>
+              <th>Nume și prenume</th>
+              <th>Medie</th>
+              <th>Note</th>
+              <th>Șterge</th>
+            </tr>
+          </thead>
+          <tbody id="studentsTable">
+          </tbody>
+        </table>
       </div>
-      <div id="gradesContainer">
-        <button class="yellowBtn hideGrades">
-          <i class="fa-solid fa-eye-slash hideGrades mr"></i>Ascunde notele
-        </button>
-        <p id="studentName"></p>
-        <form onsubmit="return false">
-          <input
-            class="input"
-            id="inputGrade"
-            type="number"
-            min="0"
-            max="10"
-            placeholder="Nota"
-          />
-          <button class="greenBtn" id="addGrade" type="submit">
-            <i class="fa-solid fa-plus mr"></i>Adaugă
+      <div class="gradesContainer flex-center">
+        <div class="mx-auto">
+          <button class="yellowBtn hideGrades">
+            <i class="fa-solid fa-eye-slash hideGrades mr"></i>Ascunde notele
           </button>
-        </form>
-        <div>
-          <button class="yellowBtn sortGradesUp">
-            Sortare<i class="fas fa-arrow-up sortGradesUp ml"></i>
-          </button>
-          <button class="yellowBtn sortGradesDown">
-            Sortare<i class="fas fa-arrow-down sortGradesDown ml"></i>
-          </button>
+          <p class="studentName my-20"></p>
+          <form onsubmit="return false">
+            <input
+              class="input w-fc"
+              id="inputGrade"
+              type="number"
+              min="0"
+              max="10"
+              placeholder="Nota"
+            />
+            <button class="greenBtn" id="addGrade" type="submit">
+              <i class="fa-solid fa-plus mr"></i>Adaugă
+            </button>
+          </form>
+          <div class="my-20">
+            <button class="yellowBtn sortGradesUp">
+              Sortare<i class="fas fa-arrow-up sortGradesUp ml"></i>
+            </button>
+            <button class="yellowBtn sortGradesDown">
+              Sortare<i class="fas fa-arrow-down sortGradesDown ml"></i>
+            </button>
+          </div>
         </div>
-        <div id="tableGradesDiv"></div>
+        <table class="table w-fc">
+          <thead>
+            <tr>
+              <th>Note</th>
+              <th>Șterge</th>
+            </tr>
+          </thead>
+          <tbody id="gradesTable">
+          </tbody>
+        </table>
       </div>
     </div>
     <script src="script.js"></script>
