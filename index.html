@@ -24,15 +24,15 @@
             placeholder="Nume și prenume elev"
           />
           <button class="greenBtn" id="addStudent" type="submit">
-            <i class="fa-solid fa-plus mr"></i>Adaugă
+            <i class="fa-solid fa-plus mr"></i>Adaugă elev
           </button>
         </form>
         <div class="my-20">
-          <button class="yellowBtn sortUp">
-            Sortare<i class="fas fa-arrow-up sortUp ml"></i>
+          <button class="btn sortUp">
+            Sortare elevi<i class="fas fa-arrow-up sortUp ml"></i>
           </button>
-          <button class="yellowBtn sortDown">
-            Sortare<i class="fas fa-arrow-down sortDown ml"></i>
+          <button class="btn sortDown">
+            Sortare elevi<i class="fas fa-arrow-down sortDown ml"></i>
           </button>
         </div>
         <table class="table w-90">
@@ -50,13 +50,10 @@
       </div>
       <div class="gradesContainer flex-center">
         <div class="mx-auto">
-          <button class="yellowBtn hideGrades">
-            <i class="fa-solid fa-eye-slash hideGrades mr"></i>Ascunde notele
-          </button>
           <p class="studentName my-20"></p>
           <form onsubmit="return false">
             <input
-              class="input w-fc"
+              class="input w-fc ml"
               id="inputGrade"
               type="number"
               min="0"
@@ -64,17 +61,20 @@
               placeholder="Nota"
             />
             <button class="greenBtn" id="addGrade" type="submit">
-              <i class="fa-solid fa-plus mr"></i>Adaugă
+              <i class="fa-solid fa-plus mr"></i>Adaugă notă
             </button>
           </form>
           <div class="my-20">
-            <button class="yellowBtn sortGradesUp">
-              Sortare<i class="fas fa-arrow-up sortGradesUp ml"></i>
+            <button class="btn sortGradesUp">
+              Sortare note<i class="fas fa-arrow-up sortGradesUp ml"></i>
             </button>
-            <button class="yellowBtn sortGradesDown">
-              Sortare<i class="fas fa-arrow-down sortGradesDown ml"></i>
+            <button class="btn sortGradesDown">
+              Sortare note<i class="fas fa-arrow-down sortGradesDown ml"></i>
             </button>
           </div>
+          <button class="yellowBtn hideGrades">
+            <i class="fa-solid fa-eye-slash hideGrades mr"></i>Ascunde notele
+          </button>
         </div>
         <table class="table w-fc">
           <thead>

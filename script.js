@@ -10,7 +10,7 @@ const studentsTable = document.querySelector("#studentsTable");
 
 let students = [
   { name: "popescu ion", grades: [5, 7, 4, 10, 8] },
-  { name: "blandiana ana", grades: [10, 8, 5, 9, 7] },
+  { name: "blandiana ana", grades: [10, 8, 5, 9, 7] }
 ];
 let index;
 gradesContainer.style.display = "none";
@@ -26,21 +26,21 @@ class UI {
   static createStudentsTable() {
     studentsTable.innerHTML = "";
     let i = 0;
-    students.forEach((el) => {
+    students.forEach(student => {
       let row = studentsTable.insertRow(0);
       let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(1);
       let cell3 = row.insertCell(2);
       let cell4 = row.insertCell(3);
-      cell1.textContent = el.name;
-      cell2.textContent = UI.calculateAvg(i);
+      cell1.textContent = student.name;
+      cell2.textContent = UI.calculateAvg(students[i].grades);
       cell3.innerHTML = `<button class="greenBtn view" data-id="${i}">
-                            <i class="fa-solid fa-eye view mr" data-id="${i}"></i>
-                            Vezi note
+                            <i class="fa-solid fa-eye view mr" data-id="${i}">
+                            </i>Vezi note
                         </button>`;
       cell4.innerHTML = `<button class="redBtn xNames" data-id="${i}">
-                            <i class="fas fa-trash xNames mr" data-id="${i}"></i>
-                            Șterge
+                            <i class="fas fa-trash xNames mr" data-id="${i}">
+                            </i>Șterge elev
                         </button>`;
       i++;
     });
@@ -48,28 +48,22 @@ class UI {
   static createGradesTable() {
     gradesTable.innerHTML = "";
     let i = 0;
-    students[index].grades.forEach((el) => {
+    students[index].grades.forEach(grade => {
       let row = gradesTable.insertRow(0);
       let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(1);
-      cell1.textContent = el;
+      cell1.textContent = grade;
       cell2.innerHTML = `<button class="redBtn xGrades" data-id="${i}">
-                            <i class="fas fa-trash xGrades mr" data-id="${i}"></i>
-                            Șterge
+                            <i class="fas fa-trash xGrades mr" data-id="${i}">
+                            </i>Șterge notă
                         </button>`;
       i++;
     });
   }
-  static calculateAvg(i) {
+  static calculateAvg(array) {
     let sum = 0;
-    let count = 0;
-    students[i].grades.forEach((el) => {
-      sum += el;
-      count++;
-    });
-    if (count !== 0) {
-      return (sum / count).toFixed(2);
-    }
+    array.forEach(grade => sum += grade);
+    if (array.length !== 0) return (sum / array.length).toFixed(2);
   }
   static sortStudentsUp() {
     students.sort((a, b) => (a.name < b.name ? 1 : -1));
@@ -119,8 +113,8 @@ container.addEventListener("click", (event) => {
     gradesContainer.style.display = "flex";
     UI.createGradesTable();
   } else if (clickedElement.classList.contains("xNames")) {
-    const indexNames = Number(clickedElement.dataset.id);
-    students.splice(indexNames, 1);
+    const indexStudents = Number(clickedElement.dataset.id);
+    students.splice(indexStudents, 1);
     gradesContainer.style.display = "none";
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("xGrades")) {

@@ -13,17 +13,18 @@ body {
   padding: 20px;
   margin: auto;
 }
-p {
-  margin: 20px 0 0 0;
+.studentName {
   font-size: 1.5rem;
   text-transform: capitalize;
 }
-
 .input {
   width: 69%;
   height: 2rem;
   padding-left: 10px;
 }
+
+/* Random classes */
+
 .ml {
   margin-left: 0.4rem;
 }
@@ -99,19 +100,19 @@ p {
   white-space: nowrap;
 }
 .btn {
-  background-color: #444444;
+  background-color: #3498db;
 }
 .btn:hover {
-  background-color: #3a3a3a;
+  background-color: #21618b;
 }
 .btn:active {
-  background-color: #181818;
+  background-color: #153d57;
 }
 .greenBtn {
   background-color: #00bc8c;
 }
 .greenBtn:hover {
-  background-color: #009b74;
+  background-color: #018261;
 }
 .greenBtn:active {
   background-color: #005e46;
