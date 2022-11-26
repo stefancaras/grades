@@ -8,7 +8,7 @@ const studentName = document.querySelector(".studentName");
 const gradesTable = document.querySelector("#gradesTable");
 const studentsTable = document.querySelector("#studentsTable");
 
-let array = [
+let students = [
   { name: "popescu ion", grades: [5, 7, 4, 10, 8] },
   { name: "blandiana ana", grades: [10, 8, 5, 9, 7] },
 ];
@@ -26,7 +26,7 @@ class UI {
   static createStudentsTable() {
     studentsTable.innerHTML = "";
     let i = 0;
-    array.forEach((el) => {
+    students.forEach((el) => {
       let row = studentsTable.insertRow(0);
       let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(1);
@@ -48,7 +48,7 @@ class UI {
   static createGradesTable() {
     gradesTable.innerHTML = "";
     let i = 0;
-    array[index].grades.forEach((el) => {
+    students[index].grades.forEach((el) => {
       let row = gradesTable.insertRow(0);
       let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(1);
@@ -63,7 +63,7 @@ class UI {
   static calculateAvg(i) {
     let sum = 0;
     let count = 0;
-    array[i].grades.forEach((el) => {
+    students[i].grades.forEach((el) => {
       sum += el;
       count++;
     });
@@ -71,17 +71,17 @@ class UI {
       return (sum / count).toFixed(2);
     }
   }
-  static sortArrayUp() {
-    array.sort((a, b) => (a.name < b.name ? 1 : -1));
+  static sortStudentsUp() {
+    students.sort((a, b) => (a.name < b.name ? 1 : -1));
   }
-  static sortArrayDown() {
-    array.sort((a, b) => (a.name > b.name ? 1 : -1));
+  static sortStudentsDown() {
+    students.sort((a, b) => (a.name > b.name ? 1 : -1));
   }
   static sortGradesUp() {
-    array[index].grades.sort((a, b) => b - a);
+    students[index].grades.sort((a, b) => b - a);
   }
   static sortGradesDown() {
-    array[index].grades.sort((a, b) => a - b);
+    students[index].grades.sort((a, b) => a - b);
   }
 }
 
@@ -97,46 +97,46 @@ container.addEventListener("click", (event) => {
   const clickedElement = event.target;
   if (
     clickedElement.id === "addStudent" &&
-    inputName.value != "" &&
+    inputName.value !== "" &&
     inputName.checkValidity()
   ) {
     const student = new Student(inputName.value.toLowerCase());
-    array.push(student);
+    students.push(student);
     inputName.value = "";
     UI.createStudentsTable();
   } else if (
     clickedElement.id === "addGrade" &&
-    inputGrade.value != "" &&
+    inputGrade.value !== "" &&
     inputGrade.checkValidity()
   ) {
-    array[index].grades.push(Number(inputGrade.value));
+    students[index].grades.push(Number(inputGrade.value));
     inputGrade.value = "";
     UI.createGradesTable();
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("view")) {
     index = Number(clickedElement.dataset.id);
-    studentName.textContent = array[index].name;
+    studentName.textContent = students[index].name;
     gradesContainer.style.display = "flex";
     UI.createGradesTable();
   } else if (clickedElement.classList.contains("xNames")) {
     const indexNames = Number(clickedElement.dataset.id);
-    array.splice(indexNames, 1);
+    students.splice(indexNames, 1);
     gradesContainer.style.display = "none";
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("xGrades")) {
     const indexGrades = Number(clickedElement.dataset.id);
-    array[index].grades.splice(indexGrades, 1);
+    students[index].grades.splice(indexGrades, 1);
     UI.createGradesTable();
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("hideGrades")) {
     gradesContainer.style.display = "none";
   } else if (clickedElement.classList.contains("sortUp")) {
     gradesContainer.style.display = "none";
-    UI.sortArrayUp();
+    UI.sortStudentsUp();
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("sortDown")) {
     gradesContainer.style.display = "none";
-    UI.sortArrayDown();
+    UI.sortStudentsDown();
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("sortGradesUp")) {
     UI.sortGradesUp();
