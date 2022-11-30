@@ -8,10 +8,7 @@ const studentName = document.querySelector(".studentName");
 const gradesTable = document.querySelector("#gradesTable");
 const studentsTable = document.querySelector("#studentsTable");
 
-let students = [
-  { name: "popescu ion", grades: [5, 7, 4, 10, 8] },
-  { name: "blandiana ana", grades: [10, 8, 5, 9, 7] }
-];
+let students = [];
 let index;
 gradesContainer.style.display = "none";
 
@@ -21,13 +18,14 @@ class Student {
     this.grades = [];
   }
 }
-// Add 100 students
+
+// Add students
 (() => {
   const surNames = ['Ursu', 'Vulpe', 'Păstrăv', 'Găină', 'Curcă', 
-                    'Iepuroiu', 'Berbec', 'Taur', 'Crap', 'Vultur'];
+                    'Iepuroiu', 'Berbec', 'Bursuc', 'Crap', 'Vultur'];
   const names = ['Carmen', 'Viorica', 'Elena', 'Lidia', 'Mihaela', 
                 'Stefan', 'Gheorghe', 'Tudor', 'Mircea', 'Andrei'];
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 5; i++) {
     let fr = Math.floor(Math.random() * 10);
     let sr = Math.floor(Math.random() * 10);
     const fullName = surNames[fr] + " " + names[sr];
@@ -37,7 +35,8 @@ class Student {
     newStudent.grades = [fr, sr]
     students.push(newStudent);
   }
-})//()
+})()
+
 // Functions grouped in a class
 class UI {
   static createStudentsTable() {
@@ -49,13 +48,15 @@ class UI {
       let cell2 = row.insertCell(1);
       let cell3 = row.insertCell(2);
       let cell4 = row.insertCell(3);
-      cell1.textContent = student.name;
-      cell2.textContent = UI.calculateAvg(students[i].grades);
-      cell3.innerHTML = `<button class="greenBtn view" data-id="${i}">
+      let cell5 = row.insertCell(4);
+      cell1.textContent = i;
+      cell2.textContent = student.name;
+      cell3.textContent = UI.calculateAvg(students[i].grades);
+      cell4.innerHTML = `<button class="greenBtn view" data-id="${i}">
                             <i class="fa-solid fa-eye view mr" data-id="${i}">
                             </i>Vezi note
                         </button>`;
-      cell4.innerHTML = `<button class="redBtn xNames" data-id="${i}">
+      cell5.innerHTML = `<button class="redBtn xNames" data-id="${i}">
                             <i class="fas fa-trash xNames mr" data-id="${i}">
                             </i>Șterge elev
                         </button>`;
@@ -96,6 +97,7 @@ class UI {
   }
 }
 
+// Event listeners
 container.addEventListener("keypress", (event) => {
   if (event.target.id === "inputName" && event.key === "Enter") {
     addStudent.click();
