@@ -27,16 +27,16 @@ class Student {
                     'Șarpe', 'Furnică', 'Șopârlă', 'Gâscă', 'Melc'];
   const names = ['Carmen', 'Viorica', 'Elena', 'Lidia', 'Mihaela', 
                 'Stefan', 'Gheorghe', 'Tudor', 'Mircea', 'Andrei'];
-  let j = 0
-  for (let i = 0; i < 50; i++) {
+  let surNamesIndex = 0;
+  for (let i = 0; i < 5; i++) {
     let randomNumber = Math.floor(Math.random() * 10);
-    const fullName = surNames[j] + " " + names[randomNumber];
+    const fullName = surNames[surNamesIndex] + " " + names[randomNumber];
     const newStudent = new Student(fullName);
     if (randomNumber < 4) randomNumber += 7;
-    newStudent.grades = [10, randomNumber, Math.floor(Math.random() * 6 + 5)]
+    newStudent.grades = [10, randomNumber, Math.floor(Math.random() * 6 + 5)];
     students.push(newStudent);
-    j++;
-    if (j === 20) j = 0;
+    surNamesIndex++;
+    if (surNamesIndex === 20) surNamesIndex = 0;
   }
 })()
 
