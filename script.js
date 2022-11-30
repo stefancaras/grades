@@ -22,18 +22,21 @@ class Student {
 // Add students
 (() => {
   const surNames = ['Ursu', 'Vulpe', 'Păstrăv', 'Găină', 'Curcă', 
-                    'Iepuroiu', 'Berbec', 'Bursuc', 'Crap', 'Vultur'];
+                    'Iepure', 'Berbec', 'Bursuc', 'Crap', 'Vultur',
+                    'Mistreț', 'Lupu', 'Arici', 'Știucă', 'Rață',
+                    'Șarpe', 'Furnică', 'Șopârlă', 'Gâscă', 'Melc'];
   const names = ['Carmen', 'Viorica', 'Elena', 'Lidia', 'Mihaela', 
                 'Stefan', 'Gheorghe', 'Tudor', 'Mircea', 'Andrei'];
-  for (let i = 0; i < 5; i++) {
-    let fr = Math.floor(Math.random() * 10);
-    let sr = Math.floor(Math.random() * 10);
-    const fullName = surNames[fr] + " " + names[sr];
+  let j = 0
+  for (let i = 0; i < 50; i++) {
+    let randomNumber = Math.floor(Math.random() * 10);
+    const fullName = surNames[j] + " " + names[randomNumber];
     const newStudent = new Student(fullName);
-    if (fr < 4) fr += 7;
-    if (sr < 4) sr += 7;
-    newStudent.grades = [fr, sr]
+    if (randomNumber < 4) randomNumber += 7;
+    newStudent.grades = [10, randomNumber, Math.floor(Math.random() * 6 + 5)]
     students.push(newStudent);
+    j++;
+    if (j === 20) j = 0;
   }
 })()
 
