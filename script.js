@@ -21,7 +21,24 @@ class Student {
     this.grades = [];
   }
 }
-
+// Add 100 students
+(() => {
+  const surNames = ['Ursu', 'Vulpe', 'Păstrăv', 'Găină', 'Curcă', 
+                    'Iepuroiu', 'Berbec', 'Taur', 'Crap', 'Vultur'];
+  const names = ['Carmen', 'Viorica', 'Elena', 'Lidia', 'Mihaela', 
+                'Stefan', 'Gheorghe', 'Tudor', 'Mircea', 'Andrei'];
+  for (let i = 0; i < 100; i++) {
+    let fr = Math.floor(Math.random() * 10);
+    let sr = Math.floor(Math.random() * 10);
+    const fullName = surNames[fr] + " " + names[sr];
+    const newStudent = new Student(fullName);
+    if (fr < 4) fr += 7;
+    if (sr < 4) sr += 7;
+    newStudent.grades = [fr, sr]
+    students.push(newStudent);
+  }
+})//()
+// Functions grouped in a class
 class UI {
   static createStudentsTable() {
     studentsTable.innerHTML = "";

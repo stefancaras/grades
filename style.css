@@ -46,6 +46,9 @@ body {
 .w-90 {
   width: 90%;
 }
+.w-100px {
+  width: 100px;
+}
 .flex-center {
   display: flex;
   align-items: center;
