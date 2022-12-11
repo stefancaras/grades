@@ -86,17 +86,11 @@ class UI {
     array.forEach(grade => sum += grade);
     if (array.length !== 0) return (sum / array.length).toFixed(2);
   }
-  static sortStudentsUp() {
-    students.sort((a, b) => (a.name < b.name ? 1 : -1));
+  static sortStudents(n1, n2) {
+    students.sort((a, b) => (a.name < b.name ? n1 : n2));
   }
-  static sortStudentsDown() {
-    students.sort((a, b) => (a.name > b.name ? 1 : -1));
-  }
-  static sortGradesUp() {
-    students[index].grades.sort((a, b) => b - a);
-  }
-  static sortGradesDown() {
-    students[index].grades.sort((a, b) => a - b);
+  static sortGrades(n1, n2) {
+    students[index].grades.sort((a, b) => (a < b ? n1 : n2));
   }
 }
 
@@ -148,17 +142,17 @@ container.addEventListener("click", (event) => {
     gradesContainer.style.display = "none";
   } else if (clickedElement.classList.contains("sortUp")) {
     gradesContainer.style.display = "none";
-    UI.sortStudentsUp();
+    UI.sortStudents(1, -1);
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("sortDown")) {
     gradesContainer.style.display = "none";
-    UI.sortStudentsDown();
+    UI.sortStudents(-1, 1);
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("sortGradesUp")) {
-    UI.sortGradesUp();
+    UI.sortGrades(1, -1);
     UI.createGradesTable();
   } else if (clickedElement.classList.contains("sortGradesDown")) {
-    UI.sortGradesDown();
+    UI.sortGrades(-1, 1);
     UI.createGradesTable();
   }
 });
