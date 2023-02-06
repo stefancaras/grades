@@ -95,9 +95,9 @@ class UI {
   static sortGrades(n1, n2) {
     student.grades.sort((a, b) => (a < b ? n1 : n2));
   }
-  static confirmMsg(string, string2) {
+  static confirmMsg(string1, string2) {
     if (response.ok) {
-      $(".confirm").textContent = `The ${string} has been ${string2}.`
+      $(".confirm").textContent = `The ${string1} has been ${string2}.`
     } else {
       $(".confirm").classList.add("redBg");
       $(".confirm").textContent = "There was a problem, view console log."
@@ -108,13 +108,13 @@ class UI {
 }
 
 // Event listeners
-$(".container").addEventListener("keypress", (event) => {
-  if (event.target.id === "inputName" && event.key === "Enter") {
-    $("#addStudent").click();
-  } else if (event.target.id === "inputGrade" && event.key === "Enter") {
-    $("#addGrade").click();
-  }
-});
+// $(".container").addEventListener("keypress", (event) => {
+//   if (event.target.id === "inputName" && event.key === "Enter") {
+//     $("#addStudent").click();
+//   } else if (event.target.id === "inputGrade" && event.key === "Enter") {
+//     $("#addGrade").click();
+//   }
+// });
 
 $(".container").addEventListener("click", (event) => {
   const clickedElement = event.target;
