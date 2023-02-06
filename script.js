@@ -23,14 +23,14 @@ class Async {
     $("#inputName").value = "";
     let data = await response.json();
     console.log(data);
-    confirmMsg("student");
+    UI.confirmMsg("student", "added");
     Async.fetchStudents();
   }
   static async deleteStudent(id) {
     await fetch(`${studentURL}/${id}`, { method: 'DELETE' });
     Async.fetchStudents();
   }
-  static async addGrade() {
+  static async addGrade(string) {
     response = await fetch(`${studentURL}/${student.id}`, {
       method: "PUT",
       headers: { 'Content-Type': 'application/json' },
@@ -40,7 +40,7 @@ class Async {
     });
     let data = await response.json();
     console.log(data);
-    confirmMsg("grade");
+    UI.confirmMsg("grade", string);
   }
 }
 
@@ -95,6 +95,16 @@ class UI {
   static sortGrades(n1, n2) {
     student.grades.sort((a, b) => (a < b ? n1 : n2));
   }
+  static confirmMsg(string, string2) {
+    if (response.ok) {
+      $(".confirm").textContent = `The ${string} has been ${string2}.`
+    } else {
+      $(".confirm").classList.add("redBg");
+      $(".confirm").textContent = "There was a problem, view console log."
+    }
+    $(".confirm").style.display = "block";
+    setTimeout(() => { $(".confirm").style.display = "none" }, 1000);
+  }
 }
 
 // Event listeners
@@ -121,7 +131,7 @@ $(".container").addEventListener("click", (event) => {
   ) {
     student.grades.push(Number($("#inputGrade").value));
     $("#inputGrade").value = "";
-    Async.addGrade();
+    Async.addGrade("added");
     UI.createGradesTable();
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("view")) {
@@ -137,7 +147,7 @@ $(".container").addEventListener("click", (event) => {
   } else if (clickedElement.classList.contains("xGrades")) {
     const indexGrades = Number(clickedElement.dataset.id);
     student.grades.splice(indexGrades, 1);
-    Async.addGrade();
+    Async.addGrade("removed");
     UI.createGradesTable();
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("close")) {
@@ -157,14 +167,3 @@ $(".container").addEventListener("click", (event) => {
   }
 });
 Async.fetchStudents();
-
-const confirmMsg = (string) => {
-  if (response.ok) {
-    $(".confirm").textContent = `The ${string} has been added.`
-  } else {
-    $(".confirm").classList.add("redBg");
-    $(".confirm").textContent = "There was a problem, view console log."
-  }
-  $(".confirm").style.display = "block";
-  setTimeout(() => { $(".confirm").style.display = "none" }, 1000);
-}
