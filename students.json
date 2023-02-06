@@ -1,0 +1,102 @@
+[
+  {
+    "id": "1",
+    "name": "Melc Andrei",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "2",
+    "name": "Gâscă Mihaela",
+    "grades": [10, 6, 9, 8]
+  },
+  {
+    "id": "3",
+    "name": "Șopârlă Mircea",
+    "grades": [10, 6, 7, 5]
+  },
+  {
+    "id": "4",
+    "name": "Furnică Lidia",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "5",
+    "name": "Șarpe Tudor",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "6",
+    "name": "Rață Elena",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "7",
+    "name": "Știucă Gheorghe",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "8",
+    "name": "Arici Viorica",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "9",
+    "name": "Lupu Stefan",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "10",
+    "name": "Mistreț Carmen",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "11",
+    "name": "Vultur Bogdan",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "12",
+    "name": "Crap Andra",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "13",
+    "name": "Bursuc Costel",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "14",
+    "name": "Berbec Bella",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "15",
+    "name": "Iepure Dumitru",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "16",
+    "name": "Curcă Florentina",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "17",
+    "name": "Găină Emanuel",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "18",
+    "name": "Păstrăv Diana",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "19",
+    "name": "Vulpe Florin",
+    "grades": [10, 6, 7, 8]
+  },
+  {
+    "id": "20",
+    "name": "Ursu Julieta",
+    "grades": [10, 6, 7, 8]
+  }
+]

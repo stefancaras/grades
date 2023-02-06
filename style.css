@@ -22,6 +22,18 @@ body {
   height: 2rem;
   padding-left: 10px;
 }
+.confirm {
+  display: none;
+  position: fixed;
+  width: 400px;
+  padding: 2rem;
+  background-color: #00bc8ddc;
+  text-align: center;
+  border-radius: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 /* Random classes */
 
@@ -63,6 +75,12 @@ body {
 .border {
   border: 1px solid white;
 }
+.largeFont {
+  font-size: 1.4rem;
+}
+.redBg {
+  background-color: #e74c3c;
+}
 
 /* Table */
 
@@ -80,7 +98,7 @@ body {
   padding: 12px 15px;
 }
 .table td {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 .table tr {
   border-bottom: thin solid #dddddd;
@@ -137,4 +155,43 @@ body {
 }
 .yellowBtn:active {
   background-color: #8f5c0b;
+}
+
+/* Modal */
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #222222;
+  margin: 20px auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 700px; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

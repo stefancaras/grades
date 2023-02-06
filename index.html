@@ -20,7 +20,7 @@
             class="input"
             id="inputName"
             type="text"
-            pattern="[a-zA-Z -]{3,}"
+            pattern="[\p{L} -]{3,}"
             placeholder="Nume și prenume elev"
           />
           <button class="greenBtn" id="addStudent" type="submit">
@@ -38,57 +38,64 @@
         <table class="table w-90">
           <thead>
             <tr>
-              <th>Nr.</th>
+              <th>ID</th>
               <th>Nume și prenume</th>
               <th>Medie</th>
               <th>Note</th>
               <th>Șterge</th>
             </tr>
           </thead>
-          <tbody id="studentsTable">
-          </tbody>
+          <tbody id="studentsTable"></tbody>
         </table>
       </div>
-      <div class="gradesContainer flex-center">
-        <div class="mx-auto">
-          <p class="studentName my-20"></p>
-          <form onsubmit="return false">
-            <input
-              class="input w-100px ml"
-              id="inputGrade"
-              type="number"
-              min="0"
-              max="10"
-              placeholder="Nota"
-            />
-            <button class="greenBtn" id="addGrade" type="submit">
-              <i class="fa-solid fa-plus mr"></i>Adaugă notă
-            </button>
-          </form>
-          <div class="my-20">
-            <button class="btn sortGradesUp">
-              Sortare note<i class="fas fa-arrow-up sortGradesUp ml"></i>
-            </button>
-            <button class="btn sortGradesDown">
-              Sortare note<i class="fas fa-arrow-down sortGradesDown ml"></i>
-            </button>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="gradesContainer flex-center">
+            <div class="mx-auto">
+              <p class="studentName my-20"></p>
+              <div class="my-20">
+                <span>Media: </span><span class="avg my-20"></span>
+              </div>
+              <form class="my-20" onsubmit="return false">
+                <input
+                  class="input w-100px ml"
+                  id="inputGrade"
+                  type="number"
+                  min="0"
+                  max="10"
+                  placeholder="Nota"
+                />
+                <button class="greenBtn" id="addGrade" type="submit">
+                  <i class="fa-solid fa-plus mr"></i>Adaugă notă
+                </button>
+              </form>
+              <div class="my-20">
+                <button class="btn sortGradesUp">
+                  Sortare note<i class="fas fa-arrow-up sortGradesUp ml"></i>
+                </button>
+                <button class="btn sortGradesDown">
+                  Sortare note<i
+                    class="fas fa-arrow-down sortGradesDown ml"
+                  ></i>
+                </button>
+              </div>
+            </div>
+            <table class="table w-fc">
+              <thead>
+                <tr>
+                  <th>Note</th>
+                  <th>Șterge</th>
+                </tr>
+              </thead>
+              <tbody id="gradesTable"></tbody>
+            </table>
           </div>
-          <button class="yellowBtn hideGrades">
-            <i class="fa-solid fa-eye-slash hideGrades mr"></i>Ascunde notele
-          </button>
         </div>
-        <table class="table w-fc">
-          <thead>
-            <tr>
-              <th>Note</th>
-              <th>Șterge</th>
-            </tr>
-          </thead>
-          <tbody id="gradesTable">
-          </tbody>
-        </table>
       </div>
     </div>
+
+    <p class="confirm largeFont"></p>
     <script src="script.js"></script>
   </body>
 </html>
