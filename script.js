@@ -27,7 +27,8 @@ class Async {
     Async.fetchStudents();
   }
   static async deleteStudent(id) {
-    await fetch(`${studentURL}/${id}`, { method: 'DELETE' });
+    response = await fetch(`${studentURL}/${id}`, { method: 'DELETE' });
+    UI.confirmMsg("student", "removed");
     Async.fetchStudents();
   }
   static async addGrade(string) {
