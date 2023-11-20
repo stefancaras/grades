@@ -1,4 +1,4 @@
-const $ = query => document.querySelector(query);
+const $ = (query) => document.querySelector(query);
 const studentURL = "https://632b4aa31090510116d6319b.mockapi.io/students";
 let students = [];
 let student;
@@ -14,10 +14,10 @@ class Async {
   static async addStudent() {
     response = await fetch(studentURL, {
       method: "POST",
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: $('#inputName').value,
-        grades: []
+        name: $("#inputName").value,
+        grades: [],
       }),
     });
     $("#inputName").value = "";
@@ -27,16 +27,16 @@ class Async {
     Async.fetchStudents();
   }
   static async deleteStudent(id) {
-    response = await fetch(`${studentURL}/${id}`, { method: 'DELETE' });
+    response = await fetch(`${studentURL}/${id}`, { method: "DELETE" });
     UI.confirmMsg("student", "removed");
     Async.fetchStudents();
   }
   static async addGrade(string) {
     response = await fetch(`${studentURL}/${student.id}`, {
       method: "PUT",
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        grades: student.grades
+        grades: student.grades,
       }),
     });
     let data = await response.json();
@@ -49,7 +49,7 @@ class Async {
 class UI {
   static createStudentsTable() {
     $("#studentsTable").innerHTML = "";
-    students.forEach(student => {
+    students.forEach((student) => {
       let row = $("#studentsTable").insertRow(0);
       let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(1);
@@ -73,7 +73,7 @@ class UI {
     $("#gradesTable").innerHTML = "";
     $(".avg").textContent = UI.calculateAvg(student.grades);
     let i = 0;
-    student.grades.forEach(grade => {
+    student.grades.forEach((grade) => {
       let row = $("#gradesTable").insertRow(0);
       let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(1);
@@ -87,24 +87,28 @@ class UI {
   }
   static calculateAvg(array) {
     let sum = 0;
-    array.forEach(grade => sum += grade);
+    array.forEach((grade) => (sum += grade));
     if (array.length !== 0) return (sum / array.length).toFixed(2);
   }
-  static sortStudents(n1, n2) {
-    students.sort((a, b) => (a.name.toLowerCase() < b.name.toLowerCase() ? n1 : n2));
+  static sortStudents() {
+    students.sort((a, b) =>
+      a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+    );
   }
-  static sortGrades(n1, n2) {
-    student.grades.sort((a, b) => (a < b ? n1 : n2));
+  static sortGrades() {
+    student.grades.sort((a, b) => a - b);
   }
   static confirmMsg(string1, string2) {
     if (response.ok) {
-      $(".confirm").textContent = `The ${string1} has been ${string2}.`
+      $(".confirm").textContent = `The ${string1} has been ${string2}.`;
     } else {
       $(".confirm").classList.add("redBg");
-      $(".confirm").textContent = "There was a problem, view console log."
+      $(".confirm").textContent = "There was a problem, view console log.";
     }
     $(".confirm").style.display = "block";
-    setTimeout(() => { $(".confirm").style.display = "none" }, 1000);
+    setTimeout(() => {
+      $(".confirm").style.display = "none";
+    }, 1000);
   }
 }
 
@@ -137,7 +141,7 @@ $(".container").addEventListener("click", (event) => {
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("view")) {
     const id = clickedElement.dataset.id;
-    student = students.find(el => el.id === id)
+    student = students.find((el) => el.id === id);
     $(".studentName").textContent = student.name;
     $(".avg").textContent = UI.calculateAvg(student.grades);
     $("#myModal").style.display = "block";
@@ -154,16 +158,18 @@ $(".container").addEventListener("click", (event) => {
   } else if (clickedElement.classList.contains("close")) {
     $("#myModal").style.display = "none";
   } else if (clickedElement.classList.contains("sortUp")) {
-    UI.sortStudents(1, -1);
+    UI.sortStudents();
+    students.reverse();
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("sortDown")) {
-    UI.sortStudents(-1, 1);
+    UI.sortStudents();
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("sortGradesUp")) {
-    UI.sortGrades(1, -1);
+    UI.sortGrades();
+    student.grades.reverse();
     UI.createGradesTable();
   } else if (clickedElement.classList.contains("sortGradesDown")) {
-    UI.sortGrades(-1, 1);
+    UI.sortGrades();
     UI.createGradesTable();
   }
 });
