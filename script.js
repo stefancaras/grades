@@ -95,9 +95,6 @@ class UI {
       a.name.toLowerCase().localeCompare(b.name.toLowerCase())
     );
   }
-  static sortGrades() {
-    student.grades.sort((a, b) => a - b);
-  }
   static confirmMsg(string1, string2) {
     if (response.ok) {
       $(".confirm").textContent = `The ${string1} has been ${string2}.`;
@@ -111,15 +108,6 @@ class UI {
     }, 1000);
   }
 }
-
-// Event listeners
-// $(".container").addEventListener("keypress", (event) => {
-//   if (event.target.id === "inputName" && event.key === "Enter") {
-//     $("#addStudent").click();
-//   } else if (event.target.id === "inputGrade" && event.key === "Enter") {
-//     $("#addGrade").click();
-//   }
-// });
 
 $(".container").addEventListener("click", (event) => {
   const clickedElement = event.target;
@@ -165,11 +153,10 @@ $(".container").addEventListener("click", (event) => {
     UI.sortStudents();
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("sortGradesUp")) {
-    UI.sortGrades();
-    student.grades.reverse();
+    student.grades.sort((a, b) => a - b).reverse();
     UI.createGradesTable();
   } else if (clickedElement.classList.contains("sortGradesDown")) {
-    UI.sortGrades();
+    student.grades.sort((a, b) => a - b);
     UI.createGradesTable();
   }
 });
