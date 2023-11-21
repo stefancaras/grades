@@ -90,11 +90,6 @@ class UI {
     array.forEach((grade) => (sum += grade));
     if (array.length !== 0) return (sum / array.length).toFixed(2);
   }
-  static sortStudents() {
-    students.sort((a, b) =>
-      a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-    );
-  }
   static confirmMsg(string1, string2) {
     if (response.ok) {
       $(".confirm").textContent = `The ${string1} has been ${string2}.`;
@@ -146,14 +141,17 @@ $(".container").addEventListener("click", (event) => {
   } else if (clickedElement.classList.contains("close")) {
     $("#myModal").style.display = "none";
   } else if (clickedElement.classList.contains("sortUp")) {
-    UI.sortStudents();
-    students.reverse();
+    students.sort((a, b) =>
+      b.name.toLowerCase().localeCompare(a.name.toLowerCase())
+    );
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("sortDown")) {
-    UI.sortStudents();
+    students.sort((a, b) =>
+      a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+    );
     UI.createStudentsTable();
   } else if (clickedElement.classList.contains("sortGradesUp")) {
-    student.grades.sort((a, b) => a - b).reverse();
+    student.grades.sort((a, b) => b - a);
     UI.createGradesTable();
   } else if (clickedElement.classList.contains("sortGradesDown")) {
     student.grades.sort((a, b) => a - b);
